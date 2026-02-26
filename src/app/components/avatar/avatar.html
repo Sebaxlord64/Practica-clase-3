@@ -1,0 +1,57 @@
+<div class="canvas-avatar">
+    <div class="cuerno">
+    [style.backgroundColor = "colorFondo"];
+    [style.width.px] = "tanano";
+    [style.height.px] = "tanano";
+    </div>
+    <div class="ojos">
+    <div class="ojo"></div>
+    <div class="ojo"></div>
+    </div>
+    <div class="lentes">
+    </div>
+</div>
+
+<div class="boca">
+    <switch (tipoExpression()) {
+    case (1) { <div class="feliz"></div> }
+    case (2) { <div class="sorprendido"></div> }
+    case (3) { <div class="serio"></div> }
+    }
+</div>
+
+<div>
+    <div>
+    <div>
+    <div>
+    <div>
+    <div>
+    <a href="/">Div.curpo</a>
+    <a href="/">Div.boca</a>
+    <a href="/">Div.serio</a>
+    </div>
+    </div>
+    </div>
+</div>
+
+<div class="boca">
+    @switch (tipoExpression()){
+    @case (1) {<div class="feliz"></div>}
+    @case (2) {<div class="sorprendido"></div>}
+    @case (3) {<div class="serio"></div>}
+    }
+</div>
+
+<div class="controles">
+    <label color>
+    <input type="color" [value]="colorFondo()" (input)="cambiarColor($event)">
+    </label>
+</div>
+
+<label Tamano>
+    <input type="range" min="100" max="300" [value]="tamano()" (input)="cambiarTamano($event)">
+</label>
+
+<button (click)="toggLeLentes()">
+    {{tieneLentes() ? 'Quitar Lentes' : 'Poner Lentes'}} (Boolean)
+</button>
