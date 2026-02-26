@@ -1,36 +1,43 @@
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, WritableSignal, signal } from '@angular/core';
 
 @Component({
   selector: 'app-avatar',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './avatar.html',
-  styleUrl: './avatar.scss',
+  styleUrl: './avatar.scss'
 })
 export class AvatarComponent {
-  // Propiedades
-  colorFondo: WritableSignal<string> = signal<string>('#3498db');
-  tamanho: WritableSignal<number> = signal<number>(150);
-  tienelentes: WritableSignal<boolean> = signal<boolean>(false);
-  tipoExpression: WritableSignal<number> = signal<number>(1);
 
+  colorFondo = signal<string>('#3498db');
+  tamano = signal<number>(150);
+  tieneLentes = signal<boolean>(false);
+  tipoExpresion = signal<number>(1);
+  nombre = signal<string>('');
 
-  cambiarColor(event: Event): void {
-    const input: HTMLInputElement = event.target as HTMLInputElement;
+  
+  girando = signal<boolean>(false);
+
+  cambiarColor(event: Event) {
+    const input = event.target as HTMLInputElement;
     this.colorFondo.set(input.value);
   }
 
-  cambiarTamaño(event: Event): void {
-    const input: HTMLInputElement = event.target as HTMLInputElement;
-    this.tamanho.set(parseInt(input.value));
+  cambiarTamano(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.tamano.set(Number(input.value));
   }
 
-  toggleLentes(): void {
-    this.tienelentes.update(flag => !flag);
+  toggleLentes() {
+    this.tieneLentes.update(v => !v);
   }
 
-  setExpression(tipo: number): void {
-    this.tipoExpression.set(tipo);
+  setExpresion(tipo: number) {
+    this.tipoExpresion.set(tipo);
+  }
+
+  toggleGiro() {
+    this.girando.update(v => !v);
   }
 }

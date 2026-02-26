@@ -1,54 +1,82 @@
-<div class="canvas-avatar">
-    <div class="cuerno">
-    [style.backgroundColor = "colorFondo"];
-    [style.width.px] = "tanano";
-    [style.height.px] = "tanano";
-    </div>
-    <div class="ojos">
-    <div class="ojo"></div>
-    <div class="ojo"></div>
-    </div>
-    <div class="lentes">
-    </div>
-</div>
+<div class="container">
+  <h2>Avatar</h2>
 
-<div class="boca">
-    <switch (tipoExpression()) {
-    case (1) { <div class="feliz"></div> }
-    case (2) { <div class="sorprendido"></div> }
-    case (3) { <div class="serio"></div> }
-    }
-</div>
+  <div class="canvas-avatar">
+    <div class="cuerpo"
+         [class.girar]="girando()"
+         [style.background-color]="colorFondo()"
+         [style.width.px]="tamano()"
+         [style.height.px]="tamano()">
 
-<div>
-    <div>
-    <div>
-    <a href="/">Div.curpo</a>
-    <a href="/">Div.boca</a>
-    <a href="/">Div.serio</a>
-    </div>
-    </div>
-    </div>
-</div>
+      <div class="ojos">
+        <div class="ojo"></div>
+        <div class="ojo"></div>
 
-<div class="boca">
-    @switch (tipoExpression()){
-    @case (1) {<div class="feliz"></div>}
-    @case (2) {<div class="sorprendido"></div>}
-    @case (3) {<div class="serio"></div>}
-    }
-</div>
+        @if (tieneLentes()){
+          <div class="lentes"></div>
+        }
+      </div>
 
-<div class="controles">
-    <label color>
-    <input type="color" [value]="colorFondo()" (input)="cambiarColor($event)">
+      <div class="boca">
+        @switch (tipoExpresion()){
+          @case (1) {<div class="feliz"></div>}
+          @case (2) {<div class="sorprendido"></div>}
+          @case (3) {<div class="serio"></div>}
+        }
+      </div>
+
+    </div>
+  </div>
+
+
+  @if (nombre() !== '') {
+    <p class="nombre"
+       [style.color]="colorFondo()"
+       [style.fontSize.px]="tamano() * 0.15">
+       {{ nombre() }}
+    </p>
+  }
+
+  <div class="controles">
+
+    <label>
+      Color
+      <input type="color"
+             [value]="colorFondo()"
+             (input)="cambiarColor($event)">
     </label>
+
+    <label>
+      Tamaño
+      <input type="range"
+             min="100"
+             max="300"
+             [value]="tamano()"
+             (input)="cambiarTamano($event)">
+    </label>
+
+    <label>
+      Nombre
+      <input type="text"
+             placeholder="Escribe un nombre"
+             (input)="nombre.set($any($event.target).value)">
+    </label>
+
+    <button (click)="toggleLentes()">
+      {{tieneLentes()? 'Quitar lentes' : 'Poner lentes'}}
+    </button>
+
+
+    <button (click)="toggleGiro()">
+      {{ girando() ? 'Detener Giro' : 'Girar como cd' }}
+    </button>
+
+    <div class="expresiones">
+      <p>Expresión</p>
+      <button (click)="setExpresion(1)">Feliz</button>
+      <button (click)="setExpresion(2)">Sorprendido</button>
+      <button (click)="setExpresion(3)">Serio</button>
+    </div>
+
+  </div>
 </div>
-
-<label Tamano>
-    <input type="range" min="100" max="300" [value]="tamano()" (input)="cambiarTamano($event)">
-</label>
-
-<button (click)="toggLeLentes()">
-    {{tieneLentes() ? 'Quitar Lentes' : 'Poner Lentes'}} (Boolean)
-</button>
